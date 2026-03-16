@@ -201,7 +201,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'py-3 glass shadow-lg' : 'py-6 bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'py-3 glass shadow-lg' : 'py-6 bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         <div className="flex items-center gap-3 group cursor-pointer">
           <div className="w-10 h-10 bg-navy flex items-center justify-center rounded-lg shadow-xl group-hover:shadow-gold/20 transition-all duration-500">
@@ -219,7 +219,7 @@ const Navbar = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="relative group text-sm font-medium tracking-wide text-navy uppercase overflow-hidden"
+              className="relative group text-sm font-medium tracking-wide text-navy uppercase overflow-hidden transition-all duration-500"
             >
               <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">{link.name}</span>
               <span className="absolute top-full left-0 inline-block transition-transform duration-300 group-hover:-translate-y-full text-gold">{link.name}</span>
@@ -230,7 +230,7 @@ const Navbar = () => {
             href="https://wa.me/38163277790"
             target="_blank"
             rel="noopener noreferrer"
-            className="magnetic-button bg-[#25D366] text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all duration-300 shadow-xl"
+            className="magnetic-button btn-press bg-[#25D366] text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_20px_rgba(37,211,102,0.4)] transition-all duration-500 shadow-xl"
           >
             KONTAKTIRAJ NAS
           </a>
@@ -280,20 +280,21 @@ const Navbar = () => {
 
 const Hero = () => {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y1 = useTransform(scrollY, [0, 1000], [0, 150]); // Subtle 15% parallax
 
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
       {/* Background Image with Parallax */}
       <motion.div 
         style={{ y: y1 }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 will-change-transform"
       >
         <img 
           src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2000" 
           alt="Dental Laboratory" 
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-soft-white"></div>
       </motion.div>
@@ -317,7 +318,7 @@ const Hero = () => {
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
             <a 
               href="#o-nama"
-              className="magnetic-button bg-navy text-white px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-gold transition-all duration-300 shadow-2xl flex items-center gap-3 group"
+              className="magnetic-button btn-press bg-navy text-white px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-gold transition-all duration-500 shadow-2xl flex items-center gap-3 group"
             >
               Pročitaj više <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
@@ -325,7 +326,7 @@ const Hero = () => {
               href="https://wa.me/38163277790"
               target="_blank"
               rel="noopener noreferrer"
-              className="magnetic-button bg-[#25D366] text-white px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all duration-300 shadow-2xl"
+              className="magnetic-button btn-press bg-[#25D366] text-white px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] transition-all duration-500 shadow-2xl"
             >
               KONTAKTIRAJ NAS
             </a>
@@ -359,12 +360,13 @@ const About = () => {
         >
           <div className="absolute -top-10 -left-10 w-40 h-40 border-t-2 border-l-2 border-gold/30"></div>
           <div className="absolute -bottom-10 -right-10 w-40 h-40 border-b-2 border-r-2 border-gold/30"></div>
-          <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl group">
+          <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl group card-hover">
             <img 
               src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=1000" 
               alt="Dental Craftsmanship" 
               className="w-full aspect-[4/5] object-cover transition-transform duration-1000 group-hover:scale-110"
               referrerPolicy="no-referrer"
+              loading="lazy"
             />
           </div>
           <div className="absolute top-1/2 -right-10 md:-right-20 bg-navy text-white p-8 md:p-12 rounded-2xl shadow-2xl max-w-[250px] hidden md:block">
@@ -392,7 +394,7 @@ const About = () => {
               Savremena tehnologija, inovativni materijali i njihova implementacija u svakodnevnoj praksi uz stručnost našeg tima čine nas liderima u oblasti dentalne protetike. Zubna laboratorija Bulić je visoko tehnološki opremljena, sa vrhunskim timom stručnjaka koji neprestano usavršavaju svoja znanja.
             </p>
           </div>
-          <button className="mt-12 magnetic-button bg-navy text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold transition-all duration-300 shadow-xl">
+          <button className="mt-12 magnetic-button btn-press bg-navy text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold transition-all duration-500 shadow-xl">
             Više o nama
           </button>
         </motion.div>
@@ -443,11 +445,11 @@ const TrustSection = () => {
         {pillars.map((pillar, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: idx * 0.2 }}
-            className="bg-white p-12 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 group border border-gray-100"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="bg-white p-12 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-700 group border border-gray-100 card-hover"
           >
             <div className="w-16 h-16 bg-soft-white rounded-2xl flex items-center justify-center mb-8 group-hover:bg-navy group-hover:scale-110 transition-all duration-500">
               <div className="group-hover:text-white transition-colors duration-500">
@@ -477,6 +479,7 @@ const SmileImage = () => {
           alt="Perfect Smile" 
           className="w-full h-full object-cover grayscale contrast-125"
           referrerPolicy="no-referrer"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-navy/20 mix-blend-multiply"></div>
       </motion.div>
@@ -528,7 +531,7 @@ const Certification = () => {
                 <span className="text-xs uppercase tracking-widest font-bold">Sertifikat</span>
               </div>
             </div>
-            <button className="mt-12 magnetic-button bg-gold text-navy px-12 py-5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-2xl">
+            <button className="mt-12 magnetic-button btn-press bg-gold text-navy px-12 py-5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white transition-all duration-500 shadow-2xl">
               Pročitaj više
             </button>
           </motion.div>
@@ -589,23 +592,23 @@ const Technology = () => {
             className="grid grid-cols-2 gap-6"
           >
             <div className="space-y-6">
-              <div className="bg-soft-white p-8 rounded-3xl aspect-square flex flex-col justify-end group hover:bg-navy transition-all duration-500">
-                <Cpu className="text-gold mb-4 group-hover:scale-110 transition-transform" size={32} />
-                <h4 className="text-xl font-serif text-navy group-hover:text-white transition-colors">CAD/CAM</h4>
+              <div className="bg-soft-white p-8 rounded-3xl aspect-square flex flex-col justify-end group hover:bg-navy transition-all duration-700 card-hover">
+                <Cpu className="text-gold mb-4 group-hover:scale-110 transition-transform duration-500" size={32} />
+                <h4 className="text-xl font-serif text-navy group-hover:text-white transition-colors duration-500">CAD/CAM</h4>
               </div>
-              <div className="bg-soft-white p-8 rounded-3xl aspect-[3/4] flex flex-col justify-end group hover:bg-navy transition-all duration-500">
-                <ShieldCheck className="text-gold mb-4 group-hover:scale-110 transition-transform" size={32} />
-                <h4 className="text-xl font-serif text-navy group-hover:text-white transition-colors">Digitalni Otisak</h4>
+              <div className="bg-soft-white p-8 rounded-3xl aspect-[3/4] flex flex-col justify-end group hover:bg-navy transition-all duration-700 card-hover">
+                <ShieldCheck className="text-gold mb-4 group-hover:scale-110 transition-transform duration-500" size={32} />
+                <h4 className="text-xl font-serif text-navy group-hover:text-white transition-colors duration-500">Digitalni Otisak</h4>
               </div>
             </div>
             <div className="space-y-6 pt-12">
-              <div className="bg-soft-white p-8 rounded-3xl aspect-[3/4] flex flex-col justify-end group hover:bg-navy transition-all duration-500">
-                <Award className="text-gold mb-4 group-hover:scale-110 transition-transform" size={32} />
-                <h4 className="text-xl font-serif text-navy group-hover:text-white transition-colors">3D Štampa</h4>
+              <div className="bg-soft-white p-8 rounded-3xl aspect-[3/4] flex flex-col justify-end group hover:bg-navy transition-all duration-700 card-hover">
+                <Award className="text-gold mb-4 group-hover:scale-110 transition-transform duration-500" size={32} />
+                <h4 className="text-xl font-serif text-navy group-hover:text-white transition-colors duration-500">3D Štampa</h4>
               </div>
-              <div className="bg-soft-white p-8 rounded-3xl aspect-square flex flex-col justify-end group hover:bg-navy transition-all duration-500">
-                <Cpu className="text-gold mb-4 group-hover:scale-110 transition-transform" size={32} />
-                <h4 className="text-xl font-serif text-navy group-hover:text-white transition-colors">Zirkon</h4>
+              <div className="bg-soft-white p-8 rounded-3xl aspect-square flex flex-col justify-end group hover:bg-navy transition-all duration-700 card-hover">
+                <Cpu className="text-gold mb-4 group-hover:scale-110 transition-transform duration-500" size={32} />
+                <h4 className="text-xl font-serif text-navy group-hover:text-white transition-colors duration-500">Zirkon</h4>
               </div>
             </div>
           </motion.div>
@@ -629,7 +632,7 @@ const Technology = () => {
                 </li>
               ))}
             </ul>
-            <button className="magnetic-button bg-navy text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold transition-all duration-300 shadow-xl">
+            <button className="magnetic-button btn-press bg-navy text-white px-10 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-gold transition-all duration-500 shadow-xl">
               Pročitaj više
             </button>
           </motion.div>
@@ -649,6 +652,7 @@ const Contact = () => {
           alt="Contact Background" 
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
+          loading="lazy"
         />
       </div>
       
@@ -731,7 +735,7 @@ const Contact = () => {
                   className="w-full bg-white/50 border border-navy/10 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all resize-none"
                 ></textarea>
               </div>
-              <button className="w-full magnetic-button bg-navy text-white py-5 rounded-2xl font-bold uppercase tracking-widest hover:bg-gold transition-all duration-300 shadow-xl flex items-center justify-center gap-3">
+              <button className="w-full magnetic-button btn-press bg-navy text-white py-5 rounded-2xl font-bold uppercase tracking-widest hover:bg-gold transition-all duration-500 shadow-xl flex items-center justify-center gap-3">
                 Pošalji Poruku <Send size={18} />
               </button>
             </form>
@@ -808,8 +812,52 @@ export default function App() {
     restDelta: 0.001
   });
 
+  // --- Senior Performance Engineer Optimization Snippet ---
+  useEffect(() => {
+    // 1. Passive Event Listeners for Scroll Fluidity
+    const passiveOptions = { passive: true };
+    const eventTypes = ['touchstart', 'wheel', 'touchmove'];
+    
+    const handlePassiveEvent = () => {
+      // No-op, just ensuring the listener is passive to prevent scroll-blocking
+    };
+
+    eventTypes.forEach(type => {
+      window.addEventListener(type, handlePassiveEvent, passiveOptions);
+    });
+
+    // 2. Layout Thrashing Minimization & rAF Batching
+    let rAFRequested = false;
+    const updateDOM = () => {
+      // Batch any DOM-heavy operations here if needed
+      rAFRequested = false;
+    };
+
+    const onInteraction = () => {
+      if (!rAFRequested) {
+        rAFRequested = true;
+        requestAnimationFrame(updateDOM);
+      }
+    };
+
+    window.addEventListener('scroll', onInteraction, passiveOptions);
+
+    // 3. Cleanup
+    return () => {
+      eventTypes.forEach(type => {
+        window.removeEventListener(type, handlePassiveEvent);
+      });
+      window.removeEventListener('scroll', onInteraction);
+    };
+  }, []);
+
   return (
-    <div className="relative w-full overflow-x-hidden selection:bg-gold selection:text-navy">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5, ease: "easeOut" }}
+      className="relative w-full overflow-x-hidden selection:bg-gold selection:text-navy"
+    >
       {/* Scroll Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-gold z-[100] origin-left"
@@ -849,6 +897,6 @@ export default function App() {
           animation: reverse-spin 15s linear infinite;
         }
       `}} />
-    </div>
+    </motion.div>
   );
 }

@@ -13,15 +13,33 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   body {
     @apply bg-soft-white text-navy font-sans antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
+  }
+
+  /* GPU Acceleration & Smooth Transitions */
+  section, .glass, .magnetic-button, .card-hover {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
+}
+
+/* Button Press Effect */
+.btn-press:active {
+  transform: scale(0.96) translateZ(0);
 }
 
 .glass {
